@@ -19,4 +19,13 @@ class CSRF_Token extends Base
     {
         return new \Zer0\Security\CSRF_Token($config, $this->app->broker('HTTP')->get());
     }
+    
+    /**
+     * @param string $name
+     * @param bool $caching = true
+     */
+    public function get(string $name = '', bool $caching = true): \Zer0\Security\CSRF_Token
+    {
+        return parent::get($name, $caching);
+    }
 }
