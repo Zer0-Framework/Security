@@ -17,7 +17,7 @@ class CSRF_Token extends Base
      */
     public function instantiate(ConfigInterface $config): \Zer0\Security\CSRF_Token
     {
-        return new \Zer0\Security\CSRF_Token($config, $this->app->broker('HTTP')->get());
+        return new \Zer0\Security\CSRF_Token($config, $this->app->factory('HTTP'));
     }
     
     /**
