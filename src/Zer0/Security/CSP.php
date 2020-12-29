@@ -57,8 +57,10 @@ class CSP
             if ($settings['self'] ?? false) {
                 $header .= ' \'self\'';
             }
-            if ($settings['unsafe-inline'] ?? false) {
-                $header .= ' \'unsafe-inline\'';
+            foreach (['unsafe-inline', 'unsafe-eval', 'unsafe-hashes'] as $key) {
+                if ($settings[$key] ?? false) {
+                    $header .= ' \'' . $key . '\'';
+                }
             }
             if ($settings['nonce'] ?? false) {
                 $_SERVER['CSP_NONCE'] = $_SERVER['CSP_NONCE'] ?? $this->generateNonce();
@@ -69,6 +71,6 @@ class CSP
             }
             $header .= ';';
         }
-        $this->http->header('default-src \'self\'; img-src *; media-src *; script-src $host \'unsafe-inline\'');
+        $this->http->header($header);
     }
 }
