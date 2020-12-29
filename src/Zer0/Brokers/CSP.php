@@ -5,18 +5,18 @@ namespace Zer0\Brokers;
 use Zer0\Config\Interfaces\ConfigInterface;
 
 /**
- * Class CSRF_Token
+ * Class CSP
  * @package Zer0\Brokers
  */
-class CSRF_Token extends Base
+class CSP extends Base
 {
 
     /**
      * @param ConfigInterface $config
      * @return \Zer0\Security\CSRF_Token
      */
-    public function instantiate(ConfigInterface $config): \Zer0\Security\CSRF_Token
+    public function instantiate(ConfigInterface $config): \Zer0\Security\CSP
     {
-        return new \Zer0\Security\CSRF_Token($config, $this->app->factory('HTTP'));
+        return new \Zer0\Security\CSP($config, $this->app->factory('HTTP'));
     }
 }
