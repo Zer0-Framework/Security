@@ -52,12 +52,12 @@ class CSP
     public function sendHeader(): void
     {
         $header = 'Content-Security-Policy:';
-        foreach ($this->config->src as $category => $settings) {
-            $header .= ' ' . $category . '-src';
+        foreach ($this->config->toArray() as $category => $settings) {
+            $header .= ' ' . $category;
             if ($settings['self'] ?? false) {
                 $header .= ' \'self\'';
             }
-            foreach (['unsafe-inline', 'unsafe-eval', 'unsafe-hashes'] as $key) {
+            foreach (['unsafe-inline', 'unsafe-eval', 'unsafe-hashes', 'strict-dynamic'] as $key) {
                 if ($settings[$key] ?? false) {
                     $header .= ' \'' . $key . '\'';
                 }
